@@ -31,7 +31,7 @@ async function getData() {
 function printProduct(data) {
     for (let i = 0; i < data.length; i++) {
         div.innerHTML += `<div class="card col-3">
-        <img src="${data[i].imageUrl}" class="card-img-top">
+        <img src="${data[i].imageUrl}" height="250em" class="card-img-top">
         <div class="card-body">
             <h5 class="card-title">${data[i].name}</h5>
             <h6 class="card-subtitle">${data[i].brand}</h6>
