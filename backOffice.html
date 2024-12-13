@@ -28,10 +28,11 @@
                 <input type="number" id="price" name="price" required>
                 <label for="description">Descrizione</label>
                 <input type="text" id="description" name="description" required>
-                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">RESET</button>
-                <button type="submit">SALVA</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#resetModal">RESET</button>
+                <button type="submit" class="btn btn-primary">SALVA</button>
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                <div class="modal fade" id="resetModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -45,6 +46,26 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Conferma</button>
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Annulla</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="modal-title fs-5" id="exampleModalLabel">ATTENZIONE!</h2>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Vuoi davvero eliminare il prodotto?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="reset" id="remove" class="btn btn-secondary" data-bs-dismiss="modal">Conferma</button>
                                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Annulla</button>
                             </div>
                         </div>

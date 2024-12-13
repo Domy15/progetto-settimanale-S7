@@ -8,7 +8,7 @@ const productDescription = document.getElementById("description");
 const url = "https://striveschool-api.herokuapp.com/api/product/";
 const id = sessionStorage.getItem("id");
 const btnClear = document.querySelector(".clear");
-let remove;
+let remove = document.getElementById("remove");
 
 document.addEventListener("load", init());
 
@@ -27,7 +27,7 @@ form.addEventListener("submit", function (e) {
         putData();
     }
     sessionStorage.clear();
-    location.href = "index.html";
+    setTimeout(()=>{location.href = "index.html";}, 1000)
 });
 
 btnClear.addEventListener("click", function () {
@@ -139,10 +139,13 @@ async function deleteData() {
 }
 
 function createButtonRemove() {
-    remove = document.createElement("button");
-    remove.innerText = "DELETE";
-    remove.classList.add("remove");
-    form.appendChild(remove);
+    let btnRemove = document.createElement("button");
+    btnRemove.innerText = "DELETE";
+    btnRemove.setAttribute("type", "button");
+    btnRemove.setAttribute("data-bs-toggle", "modal");
+    btnRemove.setAttribute("data-bs-target","#deleteModal");
+    btnRemove.classList.add("btn", "btn-primary");
+    form.appendChild(btnRemove);
     remove.addEventListener("click", function (e) {
         e.preventDefault();
         deleteData();
