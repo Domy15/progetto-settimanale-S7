@@ -169,6 +169,3 @@ function createButtonRemove() {
         deleteData();
     });
 }
-
-
-
