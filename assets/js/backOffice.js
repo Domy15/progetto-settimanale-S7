@@ -12,7 +12,7 @@ const btnClear = document.querySelector(".clear");
 document.addEventListener("load", init());
 
 function init() {
-    if(id){
+    if (id) {
         getData();
     }
 }
@@ -23,7 +23,10 @@ form.addEventListener("submit", function (e) {
         postData();
     } else {
         putData();
-    }
+
+    } 
+    sessionStorage.clear();
+    location.href = "index.html";
 });
 
 btnClear.addEventListener("click", function () {
