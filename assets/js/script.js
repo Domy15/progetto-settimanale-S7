@@ -33,7 +33,7 @@ function printProduct(data) {
             <p class="card-text">${data[i].description}</p>
             <p class="card-text">${data[i].price}€</p>
             <a href="#" class="btn btn-primary btnMod">Modifica</a>
-            <a href="#" class="btn btn-primary">Scopri di più</a>
+            <a href="#" class="btn btn-primary btnView">Scopri di più</a>
         </div>
     </div>`;
     };
@@ -43,5 +43,12 @@ function printProduct(data) {
             sessionStorage.setItem("id", data[i]._id);
             location.href = "backOffice.html";
         });
-    }
+    };
+    const btnView = document.querySelectorAll(".btnView");
+    for (let i = 0; i < data.length; i++) {
+        btnView[i].addEventListener("click", function() {
+            sessionStorage.setItem("id", data[i]._id);
+            location.href = "details.html";
+        });
+    };
 }
