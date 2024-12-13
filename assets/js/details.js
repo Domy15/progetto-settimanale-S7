@@ -43,7 +43,7 @@ async function getData() {
 }
 
 function printProduct(data) {
-    div.innerHTML = `<img src="${data.imageUrl}">
+    div.innerHTML = `<img src="${data.imageUrl}" width="400em" height="250">
             <div>
                 <h4>${data.brand}</h4>
                 <h2>${data.name}</h2>
