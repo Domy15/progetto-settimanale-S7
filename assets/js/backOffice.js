@@ -8,12 +8,14 @@ const productDescription = document.getElementById("description");
 const url = "https://striveschool-api.herokuapp.com/api/product/";
 const id = sessionStorage.getItem("id");
 const btnClear = document.querySelector(".clear");
+let remove;
 
 document.addEventListener("load", init());
 
 function init() {
     if (id) {
         getData();
+        createButtonRemove();
     }
 }
 
@@ -23,8 +25,7 @@ form.addEventListener("submit", function (e) {
         postData();
     } else {
         putData();
-
-    } 
+    }
     sessionStorage.clear();
     location.href = "index.html";
 });
@@ -55,7 +56,7 @@ async function postData() {
         if (!response.ok) {
             console.error("Errore nel server:", result);
         } else {
-            h1.innerText = "Aggiungi";
+            
             console.log("Prodotto aggiunto con successo:", result);
         }
     } catch (error) {
@@ -115,3 +116,38 @@ async function putData() {
         console.error("Errore nella richiesta:", error);
     }
 }
+
+async function deleteData() {
+    try {
+        const response = await fetch(url + id, {
+            method: "DELETE",
+            headers: {
+                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzVjMDAxY2QyMjA3MTAwMTVkZTJmNTUiLCJpYXQiOjE3MzQwODI1ODksImV4cCI6MTczNTI5MjE4OX0.O7LIgG48tut19TZkLFvlRfJ4pvxK7FrXuGb5K41KB-g",
+            },
+        });
+        const result = await response.json();
+        if (response.ok) {
+            console.log("Prodotto eliminato con successo:", result);
+            sessionStorage.clear();
+            location.href = "index.html";
+        } else {
+            console.error("Errore nella cancellazione del prodotto:", result);
+        }
+    } catch (error) {
+        console.error("Errore nella richiesta DELETE:", error);
+    }
+}
+
+function createButtonRemove() {
+    remove = document.createElement("button");
+    remove.innerText = "DELETE";
+    remove.classList.add("remove");
+    form.appendChild(remove);
+    remove.addEventListener("click", function (e) {
+        e.preventDefault();
+        deleteData();
+    });
+}
+
+
+
