@@ -1,6 +1,7 @@
 const url = "https://striveschool-api.herokuapp.com/api/product/";
 const div = document.querySelector(".row");
-const spinner = document.querySelector(".spinner-border")
+const spinner = document.querySelector(".spinner-border");
+const alertError = document.getElementById('error');
 
 document.addEventListener("laod", init());
 
@@ -22,6 +23,8 @@ async function getData() {
         printProduct(data);
     } catch (error) {
         console.log(error);
+        alertError.innerHTML = `<div class="alert alert-warning alert-dismissible fade show w-50" role="alert">
+        <strong>ERRORE!</strong> Si è verificato un problema.`;
     };   
 }
 

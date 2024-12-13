@@ -3,6 +3,7 @@ const home = document.getElementById("home");
 const div = document.querySelector(".mainContent");
 const url = "https://striveschool-api.herokuapp.com/api/product/";
 const id = sessionStorage.getItem("id");
+const alertError = document.getElementById('error');
 
 document.addEventListener("load", init());
 
@@ -31,9 +32,13 @@ async function getData() {
             printProduct(result);
         } else {
             console.error("Errore nel recupero del prodotto:", result);
+            alertError.innerHTML = `<div class="alert alert-warning alert-dismissible fade show w-50" role="alert">
+        <strong>ERRORE!</strong> Si è verificato un problema.`;
         }
     } catch (error) {
         console.error("Errore nella richiesta GET:", error);
+        alertError.innerHTML = `<div class="alert alert-warning alert-dismissible fade show w-50" role="alert">
+        <strong>ERRORE!</strong> Si è verificato un problema.`;
     }
 }
 

@@ -9,6 +9,7 @@ const url = "https://striveschool-api.herokuapp.com/api/product/";
 const id = sessionStorage.getItem("id");
 const btnClear = document.querySelector(".clear");
 let remove = document.getElementById("remove");
+const alertError = document.getElementById('error');
 
 document.addEventListener("load", init());
 
@@ -26,8 +27,6 @@ form.addEventListener("submit", function (e) {
     } else {
         putData();
     }
-    sessionStorage.clear();
-    setTimeout(()=>{location.href = "index.html";}, 1000)
 });
 
 btnClear.addEventListener("click", function () {
@@ -55,12 +54,17 @@ async function postData() {
         const result = await response.json();
         if (!response.ok) {
             console.error("Errore nel server:", result);
+            alertError.innerHTML = `<div class="alert alert-warning alert-dismissible fade show w-50" role="alert">
+        <strong>ERRORE!</strong> Si è verificato un problema.`;
         } else {
-            
             console.log("Prodotto aggiunto con successo:", result);
+            sessionStorage.clear();
+            setTimeout(() => { location.href = "index.html"; }, 1000);
         }
     } catch (error) {
         console.error("Errore nella richiesta:", error);
+        alertError.innerHTML = `<div class="alert alert-warning alert-dismissible fade show w-50" role="alert">
+        <strong>ERRORE!</strong> Si è verificato un problema.`;
     }
 }
 
@@ -82,9 +86,13 @@ async function getData() {
             h1.innerHTML = `Modifica prodotto: ${result.name}`;
         } else {
             console.error("Errore nel recupero del prodotto:", result);
+            alertError.innerHTML = `<div class="alert alert-warning alert-dismissible fade show w-50" role="alert">
+        <strong>ERRORE!</strong> Si è verificato un problema.`;
         }
     } catch (error) {
         console.error("Errore nella richiesta GET:", error);
+        alertError.innerHTML = `<div class="alert alert-warning alert-dismissible fade show w-50" role="alert">
+        <strong>ERRORE!</strong> Si è verificato un problema.`;
     }
 }
 
@@ -109,11 +117,17 @@ async function putData() {
         const result = await response.json();
         if (!response.ok) {
             console.error("Errore nel server:", result);
+            alertError.innerHTML = `<div class="alert alert-warning alert-dismissible fade show w-50" role="alert">
+        <strong>ERRORE!</strong> Si è verificato un problema.`;
         } else {
             console.log("Prodotto aggiornato con successo:", result);
+            sessionStorage.clear();
+            setTimeout(() => { location.href = "index.html"; }, 1000);
         }
     } catch (error) {
         console.error("Errore nella richiesta:", error);
+        alertError.innerHTML = `<div class="alert alert-warning alert-dismissible fade show w-50" role="alert">
+        <strong>ERRORE!</strong> Si è verificato un problema.`;
     }
 }
 
@@ -132,9 +146,13 @@ async function deleteData() {
             location.href = "index.html";
         } else {
             console.error("Errore nella cancellazione del prodotto:", result);
+            alertError.innerHTML = `<div class="alert alert-warning alert-dismissible fade show w-50" role="alert">
+        <strong>ERRORE!</strong> Si è verificato un problema.`;
         }
     } catch (error) {
         console.error("Errore nella richiesta DELETE:", error);
+        alertError.innerHTML = `<div class="alert alert-warning alert-dismissible fade show w-50" role="alert">
+        <strong>ERRORE!</strong> Si è verificato un problema.`;
     }
 }
 
@@ -143,7 +161,7 @@ function createButtonRemove() {
     btnRemove.innerText = "DELETE";
     btnRemove.setAttribute("type", "button");
     btnRemove.setAttribute("data-bs-toggle", "modal");
-    btnRemove.setAttribute("data-bs-target","#deleteModal");
+    btnRemove.setAttribute("data-bs-target", "#deleteModal");
     btnRemove.classList.add("btn", "btn-primary");
     form.appendChild(btnRemove);
     remove.addEventListener("click", function (e) {
