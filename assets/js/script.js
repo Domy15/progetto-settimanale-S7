@@ -1,10 +1,12 @@
 const url = "https://striveschool-api.herokuapp.com/api/product/";
 const div = document.querySelector(".row");
+const spinner = document.querySelector(".spinner-border")
 
 document.addEventListener("laod", init());
 
 function init() {
     getData();
+    spinner.style.display = "none";
 }
 
 async function getData() {
@@ -52,3 +54,4 @@ function printProduct(data) {
         });
     };
 }
+
